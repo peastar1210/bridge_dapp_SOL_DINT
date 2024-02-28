@@ -43,7 +43,6 @@ const config = createConfig({
 		metaMask(),
 		walletConnect({
 			projectId: "3fcc6bba6f1de962d911bb5b5c3dba68",
-			relayUrl: "wss://relay.walletconnect.org",
 		}),
 	],
 	transports: {
