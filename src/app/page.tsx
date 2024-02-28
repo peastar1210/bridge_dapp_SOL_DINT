@@ -144,7 +144,7 @@ export default function Home() {
 						/>
 						<Button variant="unstyled" mr="30px" onClick={onClick}>
 							<Flex>
-								<Image src="chains/Solana.png" w="25px" h="25px" />
+								<Image src="chains/solana-chain.png" w="25px" h="25px" />
 								<Text pl="5px">SOL</Text>
 								<Image src="icons/downArrow.svg" />
 							</Flex>
