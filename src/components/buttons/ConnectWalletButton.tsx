@@ -53,7 +53,7 @@ export default function ConnectWalletButton() {
 									<WalletButton
 										key={index}
 										walletName={connector.name}
-										walletLogoUri={`/wallets/${connector.name}.svg`}
+										walletLogoUri={`/wallets/${connector.name.toLowerCase()}.svg`}
 										onClick={() => {
 											connect({ connector });
 										}}
