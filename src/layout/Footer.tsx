@@ -93,7 +93,7 @@ export default function Footer() {
 				</Link>
 				<Link href="https://www.instagram.com/dinartether">
 					<FontAwesomeIcon
-						icon={["fab", "telegram"]}
+						icon={["fab", "instagram"]}
 						size="lg"
 						color="rgba(250, 250, 250, 0.7)"
 					/>

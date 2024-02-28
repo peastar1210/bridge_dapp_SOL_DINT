@@ -40,10 +40,11 @@ const projectId = process.env.NEXT_PUBLIC_WALLETCONNECT_CLOUD_PROJECT_ID!;
 const config = createConfig({
 	chains: [mainnet, base],
 	connectors: [
-		injected(),
-		walletConnect({ projectId: "3fcc6bba6f1de962d911bb5b5c3dba68" }),
 		metaMask(),
-		safe(),
+		walletConnect({
+			projectId: "3fcc6bba6f1de962d911bb5b5c3dba68",
+			relayUrl: "wss://relay.walletconnect.org",
+		}),
 	],
 	transports: {
 		[mainnet.id]: http(),

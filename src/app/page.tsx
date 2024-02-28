@@ -26,10 +26,19 @@ const CarterOne = Carter_One({
 });
 
 export default function Home() {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isNetworkOpen, setIsNetworkOpen] = useState(false);
+	const [isChainOpen, setIsChainOpen] = useState(false);
 
-	const onClick = () => {
-		setIsOpen(!isOpen);
+	const [{ tokenName, tokenSymbol }, setToken] = useState({
+		tokenName: "solana",
+		tokenSymbol: "SOL",
+	});
+
+	const onClickNetwork = () => {
+		setIsNetworkOpen(!isNetworkOpen);
+	};
+	const onClickChain = () => {
+		setIsChainOpen(!isChainOpen);
 	};
 
 	return (
@@ -89,18 +98,22 @@ export default function Home() {
 						color="rgb(212, 212, 212)"
 						_hover={{ bg: "rgb(20, 20, 20)" }}
 						borderRadius="15px"
-						onClick={onClick}
+						onClick={onClickNetwork}
 					>
 						<Flex alignItems="center">
-							<Image src="chains/ethereum-chain.png" w="25px" h="25px" />
+							<Image src="chains/solana-chain.png" w="25px" h="25px" />
 							<Text pl="5px" pr="20px">
-								Ethereum Network
+								Solana Network
 							</Text>
 							<Image src="icons/downArrow.svg" />
 						</Flex>
 					</Button>
 
-					<Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClick}>
+					<Modal
+						blockScrollOnMount={false}
+						isOpen={isNetworkOpen}
+						onClose={onClickNetwork}
+					>
 						<ModalOverlay />
 
 						<ModalContent bgColor="#121217" borderRadius="0px" my="180px">
@@ -140,10 +153,14 @@ export default function Home() {
 							variant="unstyled"
 							placeholder="0.0"
 						/>
-						<Button variant="unstyled" mr="30px" onClick={onClick}>
+						<Button variant="unstyled" mr="30px" onClick={onClickChain}>
 							<Flex>
-								<Image src="chains/solana-chain.png" w="25px" h="25px" />
-								<Text pl="5px">SOL</Text>
+								<Image
+									src={`chains/${tokenName}-chain.png`}
+									w="25px"
+									h="25px"
+								/>
+								<Text pl="5px">{tokenSymbol}</Text>
 								<Image src="icons/downArrow.svg" />
 							</Flex>
 						</Button>
@@ -164,18 +181,22 @@ export default function Home() {
 						color="rgb(212, 212, 212)"
 						_hover={{ bg: "rgb(20, 20, 20)" }}
 						borderRadius="15px"
-						onClick={onClick}
+						onClick={onClickNetwork}
 					>
 						<Flex alignItems="center">
-							<Image src="chains/bsc-chain.png" w="25px" h="25px" />
+							<Image src="chains/dint-chain.png" w="25px" h="25px" />
 							<Text pl="5px" pr="20px">
-								BNB Chain
+								DINT Chain
 							</Text>
 							<Image src="icons/downArrow.svg" />
 						</Flex>
 					</Button>
 
-					<Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClick}>
+					<Modal
+						blockScrollOnMount={false}
+						isOpen={isNetworkOpen}
+						onClose={onClickNetwork}
+					>
 						<ModalOverlay />
 
 						<ModalContent bgColor="#121217" borderRadius="0px" my="180px">
@@ -355,6 +376,145 @@ export default function Home() {
 					<Text className={CarterOne.className}>Next</Text>
 				</Button>
 			</Flex>
+
+			<Modal
+				blockScrollOnMount={false}
+				isOpen={isChainOpen}
+				onClose={onClickChain}
+			>
+				<ModalOverlay />
+
+				<ModalContent bgColor="#121217" borderRadius="0px" my="180px">
+					<ModalHeader pt="45px">
+						<Text
+							w="100%"
+							textAlign="center"
+							fontSize="30px"
+							color="rgb(239, 239, 229)"
+						>
+							Select a token
+						</Text>
+					</ModalHeader>
+					<ModalCloseButton color="rgba(239, 239, 229, 0.6)" />
+					<ModalBody>
+						<Grid templateColumns="repeat(1, 1fr)" gap="15px">
+							<Input
+								h="50px"
+								borderRadius="full"
+								borderColor="rgba(239, 239, 229, 0.6)"
+								placeholder="Search token by name or address"
+								mb="10px"
+							/>
+							<Button
+								size={"lg"}
+								w="full"
+								px="12px"
+								justifyContent={"flex-start"}
+								border="1px solid #353539"
+								color="#EFEFE599"
+								borderRadius="0px"
+								backgroundColor="#121217"
+								_hover={{
+									color: "#ECCC81",
+									borderColor: "#ECCC81",
+								}}
+								onClick={() => {
+									setToken({ tokenName: "usdt", tokenSymbol: "USDT" });
+									onClickChain();
+								}}
+							>
+								<Image src="chains/usdt-chain.png" w="30px" h="30px" />
+								<Text fontSize="14px" pl="10px">
+									Tether USD
+								</Text>
+								<Text position="absolute" right="10px" fontSize="14px">
+									-- USOT
+								</Text>
+							</Button>
+							<Button
+								size={"lg"}
+								w="full"
+								px="12px"
+								justifyContent={"flex-start"}
+								border="1px solid #353539"
+								color="#EFEFE599"
+								borderRadius="0px"
+								backgroundColor="#121217"
+								_hover={{
+									color: "#ECCC81",
+									borderColor: "#ECCC81",
+								}}
+								onClick={() => {
+									setToken({ tokenName: "usdc", tokenSymbol: "USDC" });
+									onClickChain();
+								}}
+							>
+								<Image src="chains/usdc-chain.png" w="30px" h="30px" />
+								<Text fontSize="14px" pl="10px">
+									USD Coin
+								</Text>
+								<Text position="absolute" right="10px" fontSize="14px">
+									-- USOC
+								</Text>
+							</Button>
+							<Button
+								size={"lg"}
+								w="full"
+								px="12px"
+								justifyContent={"flex-start"}
+								border="1px solid #353539"
+								color="#EFEFE599"
+								borderRadius="0px"
+								backgroundColor="#121217"
+								_hover={{
+									color: "#ECCC81",
+									borderColor: "#ECCC81",
+								}}
+								onClick={() => {
+									setToken({ tokenName: "solana", tokenSymbol: "SOL" });
+									onClickChain();
+								}}
+							>
+								<Image src="chains/solana-chain.png" w="30px" h="30px" />
+								<Text fontSize="14px" pl="10px">
+									Solana
+								</Text>
+								<Text position="absolute" right="10px" fontSize="14px">
+									-- SOL
+								</Text>
+							</Button>
+							<Button
+								size={"lg"}
+								w="full"
+								px="12px"
+								justifyContent={"flex-start"}
+								border="1px solid #353539"
+								color="#EFEFE599"
+								borderRadius="0px"
+								backgroundColor="#121217"
+								_hover={{
+									color: "#ECCC81",
+									borderColor: "#ECCC81",
+								}}
+								onClick={() => {
+									setToken({ tokenName: "dint", tokenSymbol: "DINT" });
+									onClickChain();
+								}}
+							>
+								<Image src="chains/dint-chain.png" w="30px" h="30px" />
+								<Text fontSize="14px" pl="10px">
+									Dinar Tether
+								</Text>
+								<Text position="absolute" right="10px" fontSize="14px">
+									-- DINT
+								</Text>
+							</Button>
+						</Grid>
+					</ModalBody>
+
+					<ModalFooter></ModalFooter>
+				</ModalContent>
+			</Modal>
 		</Flex>
 	);
 }
