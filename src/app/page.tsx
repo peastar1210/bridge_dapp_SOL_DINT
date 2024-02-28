@@ -1,113 +1,362 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import {
+	Button,
+	Modal,
+	ModalOverlay,
+	ModalContent,
+	ModalHeader,
+	ModalFooter,
+	ModalBody,
+	ModalCloseButton,
+	Text,
+	Flex,
+	Grid,
+	useDisclosure,
+	Image,
+	Input,
+	GridItem,
+} from "@chakra-ui/react";
+import { Carter_One } from "next/font/google";
+import { SolIcon } from "@/components/icons";
+
+const CarterOne = Carter_One({
+	weight: "400",
+	subsets: ["latin"],
+	display: "swap",
+});
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+	const [isOpen, setIsOpen] = useState(false);
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+	const onClick = () => {
+		setIsOpen(!isOpen);
+	};
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+	return (
+		<Flex direction="column" alignItems="center" w="full" h="full">
+			<Flex mt="70px">
+				<Button colorScheme="blackAlpha">
+					<Text>Transfer</Text>
+				</Button>
+			</Flex>
+			<Flex
+				direction="column"
+				position="relative"
+				w="30%"
+				p="50px"
+				mt="20px"
+				bgColor="rgba(0, 3, 7, 0.5)"
+			>
+				<Flex
+					position="absolute"
+					bottom="0"
+					left="0"
+					h="1px"
+					w="100%"
+					bg="linear-gradient(90deg, rgba(250, 250, 250, 0.7) 0%, #ECCC81 60%, #ffd77a 70%, #ECCC81 90%)"
+				/>
+				<Flex
+					position="absolute"
+					top="0"
+					right="0"
+					h="100%"
+					w="1px"
+					bg="linear-gradient(180deg, rgba(250, 250, 250, 0.7) 20%, #ECCC81 60%, #ffd77a 70%, #ECCC81 80%)"
+				/>
+				<Flex
+					position="absolute"
+					top="0"
+					left="0"
+					h="1px"
+					w="100%"
+					bg="linear-gradient(90deg, rgba(250, 250, 250, 0.7) 30%, #ECCC81 60%, #ffd77a 70%, #ECCC81 80%, rgba(250, 250, 250, 0.7) 90%)"
+				/>
+				<Flex
+					position="absolute"
+					top="0"
+					left="0"
+					h="100%"
+					w="1px"
+					bg="linear-gradient(0deg, rgba(250, 250, 250, 0.7) 0%, #ECCC81 60%, #ffd77a 70%, #ECCC81 80%, rgba(250, 250, 250, 0.7) 100%)"
+				/>
+				<Flex alignItems="center" pb="15px">
+					<Text w="50px" color="rgb(143, 155, 179)">
+						From
+					</Text>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+					<Button
+						colorScheme="blackAlpha"
+						color="rgb(212, 212, 212)"
+						_hover={{ bg: "rgb(20, 20, 20)" }}
+						borderRadius="15px"
+						onClick={onClick}
+					>
+						<Flex alignItems="center">
+							<Image src="chains/ethereum-chain.png" w="25px" h="25px" />
+							<Text pl="5px" pr="20px">
+								Ethereum Network
+							</Text>
+							<Image src="icons/downArrow.svg" />
+						</Flex>
+					</Button>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+					<Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClick}>
+						<ModalOverlay />
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+						<ModalContent bgColor="#121217" borderRadius="0px" my="180px">
+							<ModalHeader pt="45px">
+								<Text
+									w="100%"
+									textAlign="center"
+									fontSize="30px"
+									color="rgb(239, 239, 229)"
+								>
+									Select Source Chain
+								</Text>
+							</ModalHeader>
+							<ModalCloseButton color="rgba(239, 239, 229, 0.6)" />
+							<ModalBody>
+								<Grid templateColumns="repeat(1, 1fr)" gap="8px"></Grid>
+							</ModalBody>
+
+							<ModalFooter></ModalFooter>
+						</ModalContent>
+					</Modal>
+				</Flex>
+				<Flex
+					direction="column"
+					borderRadius="20px"
+					bgColor="rgba(0, 3, 9, 0.5)"
+					color="rgb(212, 212, 212)"
+				>
+					<Flex justifyContent="space-between" p="10px 25px" fontSize="12px">
+						<Text>Send:</Text>
+						<Text>Max: 0</Text>
+					</Flex>
+					<Flex justifyContent="space-between">
+						<Input
+							p="10px 25px"
+							type="number"
+							variant="unstyled"
+							placeholder="0.0"
+						/>
+						<Button variant="unstyled" mr="30px" onClick={onClick}>
+							<Flex>
+								<Image src="chains/Solana.png" w="25px" h="25px" />
+								<Text pl="5px">SOL</Text>
+								<Image src="icons/downArrow.svg" />
+							</Flex>
+						</Button>
+					</Flex>
+				</Flex>
+				<Flex justifyContent="center" my="20px">
+					<Button variant="unstyled">
+						<Image src="icons/swap.svg" w="30px" />
+					</Button>
+				</Flex>
+				<Flex alignItems="center" pb="15px">
+					<Text w="50px" color="rgb(143, 155, 179)">
+						To
+					</Text>
+
+					<Button
+						colorScheme="blackAlpha"
+						color="rgb(212, 212, 212)"
+						_hover={{ bg: "rgb(20, 20, 20)" }}
+						borderRadius="15px"
+						onClick={onClick}
+					>
+						<Flex alignItems="center">
+							<Image src="chains/bsc-chain.png" w="25px" h="25px" />
+							<Text pl="5px" pr="20px">
+								BNB Chain
+							</Text>
+							<Image src="icons/downArrow.svg" />
+						</Flex>
+					</Button>
+
+					<Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClick}>
+						<ModalOverlay />
+
+						<ModalContent bgColor="#121217" borderRadius="0px" my="180px">
+							<ModalHeader pt="45px">
+								<Text
+									w="100%"
+									textAlign="center"
+									fontSize="30px"
+									color="rgb(239, 239, 229)"
+								>
+									Select Source Chain
+								</Text>
+							</ModalHeader>
+							<ModalCloseButton color="rgba(239, 239, 229, 0.6)" />
+							<ModalBody>
+								<Grid templateColumns="repeat(2, 1fr)" gap="15px">
+									<GridItem colSpan={2} mb="10px">
+										<Input
+											h="50px"
+											borderRadius="full"
+											borderColor="rgba(239, 239, 229, 0.6)"
+											placeholder="Search chain by name or chain ID"
+										/>
+									</GridItem>
+									<Button
+										size={"lg"}
+										w="full"
+										px="12px"
+										justifyContent={"flex-start"}
+										border="1px solid #353539"
+										color="#EFEFE599"
+										borderRadius="0px"
+										backgroundColor="#121217"
+										_hover={{
+											color: "#ECCC81",
+											borderColor: "#ECCC81",
+										}}
+									>
+										<Image src="chains/ethereum-chain.png" w="30px" h="30px" />
+										<Text fontSize="14px" pl="10px">
+											Ethereum Mainnet
+										</Text>
+									</Button>
+									<Button
+										size={"lg"}
+										w="full"
+										px="12px"
+										justifyContent={"flex-start"}
+										border="1px solid #353539"
+										color="#EFEFE599"
+										borderRadius="0px"
+										backgroundColor="#121217"
+										_hover={{
+											color: "#ECCC81",
+											borderColor: "#ECCC81",
+										}}
+									>
+										<Image src="chains/bsc-chain.png" w="30px" h="30px" />
+										<Text fontSize="14px" pl="10px">
+											BNB Chain
+										</Text>
+									</Button>
+									<Button
+										size={"lg"}
+										w="full"
+										px="12px"
+										justifyContent={"flex-start"}
+										border="1px solid #353539"
+										color="#EFEFE599"
+										borderRadius="0px"
+										backgroundColor="#121217"
+										_hover={{
+											color: "#ECCC81",
+											borderColor: "#ECCC81",
+										}}
+									>
+										<Image src="chains/polygon-chain.png" w="30px" h="30px" />
+										<Text fontSize="14px" pl="10px">
+											Polygon PoS
+										</Text>
+									</Button>
+									<Button
+										size={"lg"}
+										w="full"
+										px="12px"
+										justifyContent={"flex-start"}
+										border="1px solid #353539"
+										color="#EFEFE599"
+										borderRadius="0px"
+										backgroundColor="#121217"
+										_hover={{
+											color: "#ECCC81",
+											borderColor: "#ECCC81",
+										}}
+									>
+										<Image src="chains/skale-chain.png" w="30px" h="30px" />
+										<Text fontSize="14px" pl="10px">
+											Skale Chain
+										</Text>
+									</Button>
+									<Button
+										size={"lg"}
+										w="full"
+										px="12px"
+										justifyContent={"flex-start"}
+										border="1px solid #353539"
+										color="#EFEFE599"
+										borderRadius="0px"
+										backgroundColor="#121217"
+										_hover={{
+											color: "#ECCC81",
+											borderColor: "#ECCC81",
+										}}
+									>
+										<Image src="chains/arbitrum-chain.png" w="30px" h="30px" />
+										<Text fontSize="14px" pl="10px">
+											Arbitrum One
+										</Text>
+									</Button>
+									<Button
+										size={"lg"}
+										w="full"
+										px="12px"
+										justifyContent={"flex-start"}
+										border="1px solid #353539"
+										color="#EFEFE599"
+										borderRadius="0px"
+										backgroundColor="#121217"
+										_hover={{
+											color: "#ECCC81",
+											borderColor: "#ECCC81",
+										}}
+									>
+										<Image src="chains/solana-chain.png" w="30px" h="30px" />
+										<Text fontSize="14px" pl="10px">
+											Solana Chain
+										</Text>
+									</Button>
+								</Grid>
+							</ModalBody>
+
+							<ModalFooter></ModalFooter>
+						</ModalContent>
+					</Modal>
+				</Flex>
+				<Flex
+					direction="column"
+					borderRadius="20px"
+					bgColor="rgba(0, 3, 9, 0.5)"
+					color="rgb(212, 212, 212)"
+					mb="50px"
+				>
+					<Flex justifyContent="space-between" p="10px 20px" fontSize="12px">
+						<Text>Receive (estimated):</Text>
+					</Flex>
+					<Flex justifyContent="space-between">
+						<Input
+							type="number"
+							variant="unstyled"
+							p="10px 25px"
+							placeholder="0.0"
+						/>
+					</Flex>
+				</Flex>
+				<Button
+					bg="none"
+					color="#ECCC81"
+					border="1px solid #ECCC81"
+					fontSize="20px"
+					h="55px"
+					_hover={{
+						bg: "#ECCC81",
+						color: "#121212",
+					}}
+					transition="all .3s ease-in-out"
+				>
+					<Text className={CarterOne.className}>Next</Text>
+				</Button>
+			</Flex>
+		</Flex>
+	);
 }
