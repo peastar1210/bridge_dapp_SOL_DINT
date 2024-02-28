@@ -48,9 +48,10 @@ export default function ConnectWalletButton() {
 					<ModalCloseButton color="rgba(239, 239, 229, 0.6)" />
 					<ModalBody>
 						<Grid templateColumns="repeat(1, 1fr)" gap="8px">
-							{connectors.map((connector) => {
+							{connectors.map((connector, index) => {
 								return (
 									<WalletButton
+										key={index}
 										walletName={connector.name}
 										walletLogoUri={`/wallets/${connector.name}.svg`}
 										onClick={() => {
