@@ -13,13 +13,11 @@ import {
 	Text,
 	Flex,
 	Grid,
-	useDisclosure,
 	Image,
 	Input,
 	GridItem,
 } from "@chakra-ui/react";
 import { Carter_One } from "next/font/google";
-import { SolIcon } from "@/components/icons";
 
 const CarterOne = Carter_One({
 	weight: "400",
