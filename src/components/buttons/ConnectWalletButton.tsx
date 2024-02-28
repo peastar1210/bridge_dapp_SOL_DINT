@@ -12,24 +12,29 @@ import {
 	Flex,
 	Grid,
 } from "@chakra-ui/react";
-import { ConnectWallet } from "@/layout";
+import { Account, ConnectWallet } from "@/layout";
 import WalletButton from "./WalletButton";
-import { useConnect } from "wagmi";
+import { useConnect, useAccount } from "wagmi";
 
 export default function ConnectWalletButton() {
 	const { connectors, connect } = useConnect();
+	const { isConnected } = useAccount();
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	return (
 		<>
-			<Button
-				colorScheme="blackAlpha"
-				color="#ECCC81"
-				_hover={{ bg: "#ECCC81", color: "#000000" }}
-				onClick={onOpen}
-			>
-				Connect Wallet
-			</Button>
+			{!isConnected ? (
+				<Button
+					colorScheme="blackAlpha"
+					color="#ECCC81"
+					_hover={{ bg: "#ECCC81", color: "#000000" }}
+					onClick={onOpen}
+				>
+					Connect Wallet
+				</Button>
+			) : (
+				<Account />
+			)}
 
 			<Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
 				<ModalOverlay />

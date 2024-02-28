@@ -19,7 +19,7 @@ import { injected, metaMask, safe, walletConnect } from "wagmi/connectors";
 
 import Header from "./Header";
 import Footer from "./Footer";
-import { Button, Flex } from "@chakra-ui/react";
+import { Button, Flex, Image } from "@chakra-ui/react";
 
 const WalletOptions = () => {
 	const { connectors, connect } = useConnect();
@@ -61,9 +61,16 @@ export const Account = () => {
 
 	return (
 		<div>
-			{ensAvatar && <img alt="ENS Avatar" src={ensAvatar} />}
-			{address && <div>{ensName ? `${ensName} (${address})` : address}</div>}
-			<button onClick={() => disconnect()}>Disconnect</button>
+			{ensAvatar && <Image alt="ENS Avatar" src={ensAvatar} />}
+			{address && <Flex>{ensName ? `${ensName} (${address})` : address}</Flex>}
+			<Button
+				colorScheme="blackAlpha"
+				color="#ECCC81"
+				_hover={{ bg: "#ECCC81", color: "#000000" }}
+				onClick={() => disconnect()}
+			>
+				Disconnect
+			</Button>
 		</div>
 	);
 };
